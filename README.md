@@ -1,6 +1,11 @@
-Introduction
-
-This is a new language/english encoding dictionary, and it's primary purpose is to help compress information into words with four or less characters.
+<html>
+<head>
+     <meta charset='utf-8'>
+</head>
+<body>     
+     <h1>Introduction</h1>
+     
+This is an english encoding dictionary, and its primary purpose is to help compress descriptive information into words with four or less characters.
 
 There are a few issues, including representation of proper nouns and oral pronunciation of many words is difficult, but aside from this, it is relatively simple to understand. 
 
@@ -22,22 +27,22 @@ Overall, soft fourcode is much easier to read and pronounce. However, this ease 
 
 The advantage of hard fourcode is the fact that you don't need spaces; all of the words are four letters, and the words that are less have _ added. In this manner, it is not so hard to parse the written language in four-byte chunks. 
 
-Installation and usage:
+<h1>Installation and usage:</h1>
 
 The command for install this npm package is simple. Simply do:
-  npm i fourcode
+  `npm i fourcode`
   
 In order to use the language, import the module:
 
-  const fourcode = require('fourcode');
+  `const fourcode = require('fourcode');`
 
 And subsequently access words as you would an english to fourcode dictionary:
 
-  fourcode['hello']//vyag
+  <strong>fourcode['hello']//vyag</strong>
 
 There is also a translation page included in this repo. It is called show.html. You will need to node scrip.js to start the api, and then the page should ask the server for a dictionary. You will see the form button on show.html change to "translate" when the api is ready. Just insert english, and fourcode is out on the other side. 
 
 This is an exceedingly simple project. I'm open to suggestions, and I know there are probably a lot of people out there on github who would know much better as to how I should approach this project.
   
-
-
+<body>
+</html>
