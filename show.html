@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8' />
+	<title>Fourcode</title>
+	<style>
+		#fourcode-display, tr, td{
+			border:2px solid black;
+			padding:5px;
+		}
+	</style>	
+</head>	
+<body>
+	<form id='translate'>
+		<textarea id='translate-input'></textarea>
+		<textarea id='translate-output'></textarea>
+		<button type='Submit' value='Submit' id='btn'>Waiting...</button>
+		<input type='radio' id='softcode' name='translate-type' value='pronounce' checked>
+		<label for='softcode'><strong>Soft fourcode</strong></label>
+		<input type='radio' id='hardcode' name='translate-type' value='translated'>
+		<label for='hardcode'><strong>Hard fourcode</strong></label>
+		<input type='radio' id='spaceless' name='translate-type' value='spaceless'>
+		<label for='spaceless'><strong>Spaceless</strong></label>
+
+	</form>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<script>
+		
+	var allWords = {};
+	
+
+
+	$.get('http://localhost:3000/words').then((newWords) => {
+		for(var word of newWords){
+			allWords[word.word] = word;
+		}
+		document.getElementById('btn').innerText = 'Translate';
+	}).catch((err)=>{
+		console.log(err);
+	});
+	$('form').submit((e)=>{
+		e.preventDefault();
+		let toTranslate = $('#translate-input').val();
+		let words = toTranslate.match(/[a-z]+/gi) || [];
+		let otherchars = toTranslate.match(/[^a-z]+/gi) || [];
+		console.log(words);
+		var mode = $("input[name=translate-type]:checked").val();
+		var removeSpaces = false;
+		if(mode === 'spaceless'){
+			mode = 'translated';
+			removeSpaces = true;
+		}
+		var res = [];
+		words.forEach((word)=>{
+			
+			let wordOnly = {};
+			wordOnly[mode] = word;
+
+			res.push(`${(allWords[word.toLowerCase()] || wordOnly)[mode]}${otherchars[0] || ''}`);
+			otherchars.shift();
+			if(removeSpaces){
+				var r2 = [];
+				for(var word of res){
+					let wordCharArray = new Array(4);
+					wordCharArray.fill('_');
+					for(letter in word){
+						wordCharArray[letter] = word[letter]; 
+					}
+					r2.push(wordCharArray.join(''));
+				}
+
+				res = r2.map((val)=>{
+					return val.replace(' ', '');
+				});
+			}
+		});
+		$('#translate-output').val(res.join(''));
+	});
+
+	</script>
+</body>	
+</html>
