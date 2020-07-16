@@ -42,7 +42,7 @@ And subsequently access words as you would an english to fourcode dictionary:
 
 There is also a translation page included in this repo. It is called show.html. You will need to node scrip.js to start the api, and then the page should ask the server for a dictionary. You will see the form button on show.html change to "translate" when the api is ready. Just insert english, and fourcode is out on the other side. 
 
-This is an exceedingly simple project. I'm open to suggestions, and I know there are probably a lot of people out there on github who would know much better as to how I should approach this project.
+This is an very simple project. I'm open to suggestions, and I know there are probably a lot of people out there on github who would know much better as to how I should approach this project.
   
 <body>
 </html>
